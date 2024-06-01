@@ -66,6 +66,20 @@ read -p "Would you like to start installing ChrisTileOS? (y/n) " yn
 		sudo cp dot.zshrc /etc/skel/.zshrc
 		sudo cp dot.bashrc /etc/skel/.bashrc
 
+		sudo chmod +x /etc/skel/.config/scripts/*
+		
+		sudo mkdir /user/share/zsh/plugins/zsh-sudo
+		sudo wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh -P /user/share/zsh/plugins/zsh-sudo
+
+
+		sudo mkdir /user/share/zsh/plugins/command-not-found
+		sudo wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/command-not-found/command-not-found.plugin.zsh -P /user/share/zsh/plugins/command-not-found
+		sudo pkgfile -u
+
+		git clone https://github.com/romkatv/powerlevel10k.git /etc/skel/.config/powerlevel10k/
+
+
+
 
 
 	fi
