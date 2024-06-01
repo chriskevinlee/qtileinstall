@@ -65,7 +65,6 @@ read -p "Would you like to start installing ChrisTileOS? (y/n) " yn
 		sudo cp dot.xscreensaver /etc/skel/.xscreensaver
 		sudo cp dot.zshrc /etc/skel/.zshrc
 		sudo cp dot.bashrc /etc/skel/.bashrc
-  		sudo cp dot.p10k.zsh ~/.p10k.zsh
 
 		sudo chmod +x /etc/skel/.config/scripts/*
 		
