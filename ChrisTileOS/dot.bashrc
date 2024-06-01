@@ -25,4 +25,4 @@ alias du='du -h'
 alias pacs='sudo pacman -Sy'
 
 # Alias to Update System
-alias pacu='sudo pacman -Syu
+alias pacu='sudo pacman -Syu'
