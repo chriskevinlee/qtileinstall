@@ -59,7 +59,7 @@ read -p "Would you like to start installing ChrisTileOS? (y/n) " yn
 		sudo cp -r corners /usr/share/sddm/themes/
 		sudo mkdir /etc/sddm.conf.d/
 		sudo cp /usr/lib/sddm/sddm.conf.d/default.conf /etc/sddm.conf.d/default.conf.user
-		sed -i s/Current=/Current=corners/ /etc/sddm.conf.d/default.conf.user
+		sudo sed -i s/Current=/Current=corners/ /etc/sddm.conf.d/default.conf.user
 
 		sudo cp -r config /etc/skel/.config
 		sudo cp dot.xscreensaver /etc/skel/.xscreensaver
@@ -68,16 +68,16 @@ read -p "Would you like to start installing ChrisTileOS? (y/n) " yn
 
 		sudo chmod +x /etc/skel/.config/scripts/*
 		
-		sudo mkdir /user/share/zsh/plugins/zsh-sudo
+		sudo mkdir /usr/share/zsh/plugins/zsh-sudo
 		sudo wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh -P /user/share/zsh/plugins/zsh-sudo
 
 
-		sudo mkdir /user/share/zsh/plugins/command-not-found
+		sudo mkdir /usr/share/zsh/plugins/command-not-found
 		sudo wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/command-not-found/command-not-found.plugin.zsh -P /user/share/zsh/plugins/command-not-found
 		sudo pkgfile -u
 
-		git clone https://github.com/romkatv/powerlevel10k.git /etc/skel/.config/powerlevel10k/
-		cp dot.p10k.zsh /etc/skel/.p10k.zsh
+		sudo git clone https://github.com/romkatv/powerlevel10k.git /etc/skel/.config/powerlevel10k/
+		sudo cp dot.p10k.zsh /etc/skel/.p10k.zsh
 
 
 
