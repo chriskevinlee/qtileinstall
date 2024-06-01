@@ -78,6 +78,7 @@ read -p "Would you like to start installing ChrisTileOS? (y/n) " yn
 		sudo pkgfile -u
 
 		git clone https://github.com/romkatv/powerlevel10k.git /etc/skel/.config/powerlevel10k/
+		cp dot.p10k.zsh /etc/skel/.p10k.zsh
 
 
 
