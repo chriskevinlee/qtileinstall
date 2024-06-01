@@ -41,7 +41,7 @@ bindkey '^[[B' history-substring-search-down
 source /usr/share/zsh/plugins/zsh-sudo/sudo.plugin.zsh
 
 # Suggests a package to be install if command is not found. Install via yay
-source /user/share/zsh/plugins/command-not-found
+source /usr/share/zsh/plugins/command-not-found
 
 
 
