@@ -80,6 +80,9 @@ read -p "Would you like to start installing ChrisTileOS? (y/n) " yn
 		sudo git clone https://github.com/romkatv/powerlevel10k.git /etc/skel/.config/powerlevel10k/
 		sudo cp dot.p10k.zsh /etc/skel/.p10k.zsh
 
+  ###### add a section to see if a any users with a home directory is available, if not add a user
+  ###### change default sddm from wayland to xorg
+
 
 
 
