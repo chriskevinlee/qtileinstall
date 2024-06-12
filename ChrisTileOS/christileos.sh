@@ -81,6 +81,53 @@ read -p "Would you like to start installing ChrisTileOS? (y/n) " yn
 		sudo cp dot.p10k.zsh /etc/skel/.p10k.zsh
 
   ###### add a section to see if a any users with a home directory is available, if not add a user
+user_list=($(grep "/home/" /etc/passwd | awk -F : '{print $1}'))
+
+
+if [[ ${#user_list[@]} -eq 0 ]]; then
+    read -p "No users are detected with home directories, would you like to create one? " yn
+    if [[ $yn = y ]]; then
+        read -p "Please enter a username? " username
+        read -p "Would you like to make this user a sudo user? " yn
+        if [[ ! -z $username ]]; then
+            sudo useradd -m $username
+            sudo passwd $username
+        elif [[ ! -z $username ]] && [[ $yn = y ]]; then
+            sudo useradd -m $username
+            sudo passwd $username
+            sudo usermod -aG wheel $username
+        fi
+    fi
+ elif [[ ${#user_list[@]} -gt 0  ]]; then
+         echo "Existing users with home directories:"
+    for ((i=0; i<${#user_list[@]}; i++)); do
+        echo "$(($i + 1)). ${user_list[i]}"
+    done
+    
+    read -p "Select a user to copy files to (or type 'add' to add another user): " selection
+    
+    if [[ "$selection" = "add" ]]; then
+        read -p "Please enter a username: " username
+        if [[ ! -z $username ]]; then
+            useradd -m $username
+            passwd $username
+            user_list+=($username)  # Add the new user to the list
+        fi
+    elif [[ $selection =~ ^[0-9]+$ && $selection -ge 1 && $selection -le ${#user_list[@]} ]]; then
+        selected_user="${user_list[$(($selection - 1))]}"
+        sudo cp -r .config "/home/$selected_user"
+        #echo "File copied to /home/$selected_user"
+    else
+        echo "Invalid selection."
+    fi
+fi
+
+
+
+
+
+
+  
   ###### change default sddm from wayland to xorg
 
 
