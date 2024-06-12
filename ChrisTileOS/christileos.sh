@@ -81,6 +81,8 @@ read -p "Would you like to start installing ChrisTileOS? (y/n) " yn
 		sudo cp dot.p10k.zsh /etc/skel/.p10k.zsh
 
   ###### add a section to see if a any users with a home directory is available, if not add a user
+  # BUG: if a user selects a invaild option from the user list then its echo's Invalid selection, need it to ask the user to
+  # select a vaild user
 user_list=($(grep "/home/" /etc/passwd | awk -F : '{print $1}'))
 
 
@@ -115,7 +117,7 @@ if [[ ${#user_list[@]} -eq 0 ]]; then
         fi
     elif [[ $selection =~ ^[0-9]+$ && $selection -ge 1 && $selection -le ${#user_list[@]} ]]; then
         selected_user="${user_list[$(($selection - 1))]}"
-        sudo cp -r .config "/home/$selected_user"
+        sudo cp -r config "/home/$selected_user/.config"
         #echo "File copied to /home/$selected_user"
     else
         echo "Invalid selection."
