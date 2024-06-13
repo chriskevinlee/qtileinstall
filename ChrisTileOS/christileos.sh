@@ -83,46 +83,57 @@ read -p "Would you like to start installing ChrisTileOS? (y/n) " yn
   ###### add a section to see if a any users with a home directory is available, if not add a user
   # BUG: if a user selects a invaild option from the user list then its echo's Invalid selection, need it to ask the user to
   # select a vaild user
+#!/bin/bash
+
+# Get a list of existing users with home directories
 user_list=($(grep "/home/" /etc/passwd | awk -F : '{print $1}'))
 
-
 if [[ ${#user_list[@]} -eq 0 ]]; then
-    read -p "No users are detected with home directories, would you like to create one? " yn
+    read -p "No users are detected with home directories, would you like to create one? (y/n): " yn
     if [[ $yn = y ]]; then
-        read -p "Please enter a username? " username
-        read -p "Would you like to make this user a sudo user? " yn
-        if [[ ! -z $username ]]; then
-            sudo useradd -m $username
-            sudo passwd $username
-        elif [[ ! -z $username ]] && [[ $yn = y ]]; then
-            sudo useradd -m $username
-            sudo passwd $username
-            sudo usermod -aG wheel $username
-        fi
-    fi
- elif [[ ${#user_list[@]} -gt 0  ]]; then
-         echo "Existing users with home directories:"
-    for ((i=0; i<${#user_list[@]}; i++)); do
-        echo "$(($i + 1)). ${user_list[i]}"
-    done
-    
-    read -p "Select a user to copy files to (or type 'add' to add another user): " selection
-    
-    if [[ "$selection" = "add" ]]; then
         read -p "Please enter a username: " username
+        read -p "Would you like to make this user a sudo user? (y/n): " yn_sudo
         if [[ ! -z $username ]]; then
-            useradd -m $username
-            passwd $username
-            user_list+=($username)  # Add the new user to the list
+            sudo useradd -m $username
+            sudo passwd $username
+            if [[ $yn_sudo = y ]]; then
+                sudo usermod -aG sudo $username
+            fi
         fi
-    elif [[ $selection =~ ^[0-9]+$ && $selection -ge 1 && $selection -le ${#user_list[@]} ]]; then
-        selected_user="${user_list[$(($selection - 1))]}"
-        sudo cp -r config "/home/$selected_user/.config"
-        #echo "File copied to /home/$selected_user"
-    else
-        echo "Invalid selection."
     fi
+elif [[ ${#user_list[@]} -gt 0 ]]; then
+    while true; do
+        echo "Existing users with home directories:"
+        for ((i=0; i<${#user_list[@]}; i++)); do
+            echo "$(($i + 1)). ${user_list[i]}"
+        done
+
+        read -p "Select a user to copy files to (or type 'add' to add another user): " selection
+
+        if [[ "$selection" = "add" ]]; then
+            read -p "Please enter a username: " username
+            read -p "Would you like to make this user a sudo user? (y/n): " yn_sudo
+            if [[ ! -z $username ]]; then
+                sudo useradd -m $username
+                sudo passwd $username
+                if [[ $yn_sudo = y ]]; then
+                    sudo usermod -aG sudo $username
+                fi
+                user_list+=($username)  # Add the new user to the list
+                echo "User $username added."
+            fi
+        elif [[ $selection =~ ^[0-9]+$ && $selection -ge 1 && $selection -le ${#user_list[@]} ]]; then
+            selected_user="${user_list[$(($selection - 1))]}"
+            sudo cp -r config "/home/$selected_user/.config"
+            echo "Config files copied to /home/$selected_user/.config"
+            break
+        else
+            clear
+            echo "Invalid selection. Please try again."
+        fi
+    done
 fi
+
 
 
 
