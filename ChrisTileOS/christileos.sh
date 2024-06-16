@@ -86,6 +86,7 @@ read -p "Would you like to start installing ChrisTileOS? (y/n) " yn
 
 
 		# Get a list of existing users with home directories
+
 		user_list=($(grep "/home/" /etc/passwd | awk -F : '{print $1}'))
 
 		if [[ ${#user_list[@]} -eq 0 ]]; then
@@ -131,14 +132,13 @@ read -p "Would you like to start installing ChrisTileOS? (y/n) " yn
 		            selected_user="${user_list[$(($selection - 1))]}"
 		            sudo cp -r config "/home/$selected_user/.config"
 		            echo "Config files copied to /home/$selected_user/.config"
-		            break
 		        else
 		            clear
 		            echo "Invalid selection. Please try again."
 		        fi
 		    done
 		fi
-	fi
+
 
 	sudo sed -i 's/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /etc/sudoers
 
