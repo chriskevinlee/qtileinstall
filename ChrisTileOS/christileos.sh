@@ -81,12 +81,8 @@ read -p "Would you like to start installing ChrisTileOS? (y/n) " yn
 		sudo cp dot.p10k.zsh /etc/skel/.p10k.zsh
 		clear
 
-		  ###### add a section to see if a any users with a home directory is available, if not add a user
-		  # BUG: if a user selects a user is ends the script, want to print the menu again
-
 
 		# Get a list of existing users with home directories
-
 		user_list=($(grep "/home/" /etc/passwd | awk -F : '{print $1}'))
 
 		if [[ ${#user_list[@]} -eq 0 ]]; then
@@ -139,8 +135,6 @@ read -p "Would you like to start installing ChrisTileOS? (y/n) " yn
 		    done
 		fi
 	fi
-
-
 	sudo sed -i 's/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /etc/sudoers
 
 
