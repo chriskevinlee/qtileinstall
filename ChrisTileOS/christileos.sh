@@ -82,9 +82,7 @@ read -p "Would you like to start installing ChrisTileOS? (y/n) " yn
 		clear
 
 		  ###### add a section to see if a any users with a home directory is available, if not add a user
-		  # BUG: if a user selects a invaild option from the user list then its echo's Invalid selection, need it to ask the user to
-		  # select a vaild user
-
+		  # BUG: if a user selects a user is ends the script, want to print the menu again
 
 
 		# Get a list of existing users with home directories
@@ -141,6 +139,9 @@ read -p "Would you like to start installing ChrisTileOS? (y/n) " yn
 		    done
 		fi
 	fi
+
+	sudo sed -i 's/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /etc/sudoers
+
 
 
 
