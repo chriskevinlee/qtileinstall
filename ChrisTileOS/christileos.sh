@@ -140,6 +140,14 @@ read -p "Would you like to start installing ChrisTileOS? (y/n) " yn
 
 
 
+echo "[General]" >> /etc/sddm.conf
+echo "Session=qtile.desktop" >> /etc/sddm.conf
+echo "" >> /etc/sddm.conf
+echo "[X11]" >> /etc/sddm.conf
+echo "SessionCommand=/usr/share/xsessions/qtile.desktop" >> /etc/sddm.conf
+
+
+
 
   
   
