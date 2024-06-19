@@ -1,3 +1,4 @@
+# need to move sudo sed -i  's|SHELL=/usr/bin/bash|SHELL=/usr/bin/zsh|' /etc/default/useradd before adding users in script
 clear
 echo "Welcome to ChrisTileOS Install"
 read -p "Would you like to start installing ChrisTileOS? (y/n) " yn
