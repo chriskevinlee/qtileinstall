@@ -140,7 +140,7 @@ read -p "Would you like to start installing ChrisTileOS? (y/n) " yn
 
 
 
-       # sudo mv /usr/share/wayland-sessions/qtile-wayland.desktop /usr/share/wayland-sessions/qtile-wayland.desktop.bak
+        sudo mv /usr/share/wayland-sessions/qtile-wayland.desktop /usr/share/wayland-sessions/qtile-wayland.desktop.bak
 
 
 
