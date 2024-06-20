@@ -17,6 +17,10 @@ Gold1:   #ffd700;
 
 }
 
+configuration {
+    show-icons: true;
+}
+
 window {
     location: south west;
     anchor:   south west;
