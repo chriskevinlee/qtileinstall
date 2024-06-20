@@ -52,6 +52,7 @@ read -p "Would you like to start installing ChrisTileOS? (y/n) " yn
 		sudo pacman --noconfirm -S zsh-syntax-highlighting # for the zsh shell will show vaild commands in green and invaild commands in red
 		sudo pacman --noconfirm -S zsh-autosuggestions # for the zsh shell wil show suggested typed commands
 		sudo pacman --noconfirm -S wget # To Download zsh-sudo and command-not-found plugin for zsh
+  		sudo pacman --noconfirm -S firefox # Default Web Browser
   		sudo pacman --noconfirm -S python-psutil
 		sudo pacman --noconfirm -S pacman-contrib
 		sudo pacman --noconfirm -S pkgfile
