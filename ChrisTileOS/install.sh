@@ -82,10 +82,9 @@ read -p "Would you like to start installing ChrisTileOS? (y/n) " yn
 		sudo cp dot.p10k.zsh /etc/skel/.p10k.zsh
 		clear
 
-
-
-
-
+  	        sudo sed -i 's/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /etc/sudoers
+ 	        sudo sed -i  's|SHELL=/usr/bin/bash|SHELL=/usr/bin/zsh|' /etc/default/useradd
+                sudo mv /usr/share/wayland-sessions/qtile-wayland.desktop /usr/share/wayland-sessions/qtile-wayland.desktop.bak
 
 		user_list=($(grep "/home/" /etc/passwd | awk -F : '{print $1}'))
 
@@ -138,27 +137,7 @@ read -p "Would you like to start installing ChrisTileOS? (y/n) " yn
 		        fi
 		    done
 		fi
-
- 
-
-	    sudo sed -i 's/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /etc/sudoers
- 	    sudo sed -i  's|SHELL=/usr/bin/bash|SHELL=/usr/bin/zsh|' /etc/default/useradd
-        sudo mv /usr/share/wayland-sessions/qtile-wayland.desktop /usr/share/wayland-sessions/qtile-wayland.desktop.bak
     fi
-
-
-
-
-
-  
-  
-
-
-
-  ###### change default sddm from wayland to xorg
-
-
-
 # If the user enters n then the install it exit
 	if [[ $yn = n ]]; then
 		echo "Exiting ChrisTileOS Installation..."
