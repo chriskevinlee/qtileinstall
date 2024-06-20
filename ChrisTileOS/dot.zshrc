@@ -56,7 +56,7 @@ source /usr/share/zsh/plugins/command-not-found
 
 
 
-alias cat='bat'
+alias cat='bat -p'
 
 alias du='du -h'
 
