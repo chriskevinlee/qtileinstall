@@ -12,3 +12,9 @@ systemd
 wallpapers
 
 3. wifi menu not lauching/taking a long time, seem to be something to do with noteifctaions(notify-send) in the script file, may need to remove or install notify-send
+
+4. not being copied, then selecting users
+dot.bashrc 
+dot.p10k.zsh  
+dot.xscreensaver  
+dot.zshr
