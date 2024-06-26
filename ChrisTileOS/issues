@@ -1,0 +1,12 @@
+affecting manjaro
+================
+1. scripts not being made execable when selecting users from the list
+
+2. permissions are set to root and not $USER
+conky
+qtile
+rofi
+scripts
+sounds
+systemd
+wallpapers
