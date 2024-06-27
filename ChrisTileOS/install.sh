@@ -136,11 +136,39 @@ read -p "Would you like to start installing ChrisTileOS? (y/n) " yn
 			            if [[ ! -d "/home/$selected_user/.config/" ]]; then
 			                #echo "ONE"
 			                sudo cp -r config "/home/$selected_user/.config"
+		   			sudo chmod +x "/home/$selected_user/.config/scripts/*"
+					sudo chown -r $selected_user:$selected_user "/home/$selected_user/.config/
 			                sudo sed -i "s|^\(${selected_user}:.*:\)/usr/bin/bash$|\1/usr/bin/zsh|" /etc/passwd
+
+     					cp dot.bashrc .bashrc
+					sudo chown $selected_user:$selected_user
+					
+					cp dot.p10k.zsh .p10k.zsh
+					sudo chown $selected_user:$selected_user  
+					
+					cp dot.xscreensaver .xscreensaver
+					sudo chown $selected_user:$selected_user
+					
+					cp dot.zshrc .zshrc
+					sudo chown $selected_user:$selected_user
 			            else
 			               # echo "TWO"
 			                sudo cp -r config/* "/home/$selected_user/.config"
+		                        chmod +x "/home/$selected_user/.config/scripts/*"
+			                sudo chown -r $selected_user:$selected_user "/home/$selected_user/.config/
 			                sudo sed -i "s|^\(${selected_user}:.*:\)/usr/bin/bash$|\1/usr/bin/zsh|" /etc/passwd
+
+          			        cp dot.bashrc .bashrc
+					sudo chown $selected_user:$selected_user
+					
+					cp dot.p10k.zsh .p10k.zsh
+					sudo chown $selected_user:$selected_user  
+					
+					cp dot.xscreensaver .xscreensaver
+					sudo chown $selected_user:$selected_user
+					
+					cp dot.zshrc .zshrc
+					sudo chown $selected_user:$selected_user
 			            fi
 			        else
 			            clear
