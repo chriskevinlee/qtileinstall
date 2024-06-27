@@ -139,7 +139,7 @@ if [[ ${#user_list[@]} -gt 0 ]]; then
                 sudo sed -i "s|^\(${selected_user}:.*:\)/usr/bin/bash$|\1/usr/bin/zsh|" /etc/passwd
                 cp dot.bashrc "/home/$selected_user/.bashrc"
                 sudo chown $selected_user:$selected_user "/home/$selected_user/.bashrc"
-		git clone https://github.com/romkatv/powerlevel10k.git "/home/$selected_user/.config"
+		git clone https://github.com/romkatv/powerlevel10k.git "/home/$selected_user/.config/powerlevel10k"
                 cp dot.p10k.zsh "/home/$selected_user/.p10k.zsh"
                 sudo chown $selected_user:$selected_user "/home/$selected_user/.p10k.zsh"
                 cp dot.xscreensaver "/home/$selected_user/.xscreensaver"
@@ -154,7 +154,7 @@ if [[ ${#user_list[@]} -gt 0 ]]; then
                 sudo sed -i "s|^\(${selected_user}:.*:\)/usr/bin/bash$|\1/usr/bin/zsh|" /etc/passwd
                 cp dot.bashrc "/home/$selected_user/.bashrc"
                 sudo chown $selected_user:$selected_user "/home/$selected_user/.bashrc"
-		git clone https://github.com/romkatv/powerlevel10k.git "/home/$selected_user/.config"
+		git clone https://github.com/romkatv/powerlevel10k.git "/home/$selected_user/.config/powerlevel10k"
                 cp dot.p10k.zsh "/home/$selected_user/.p10k.zsh"
                 sudo chown $selected_user:$selected_user "/home/$selected_user/.p10k.zsh"
                 cp dot.xscreensaver "/home/$selected_user/.xscreensaver"
