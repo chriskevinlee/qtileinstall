@@ -1,15 +1,15 @@
 affecting manjaro
 ================
-1. scripts not being made execable when selecting users from the list
-
-2. permissions are set to root and not $USER
-conky
-qtile
-rofi
-scripts
-sounds
-systemd
-wallpapers
+			DONE 1. scripts not being made execable when selecting users from the list
+			
+			DONE 2. permissions are set to root and not $USER
+			conky
+			qtile
+			rofi
+			scripts
+			sounds
+			systemd
+			wallpapers
 
 3. wifi menu not lauching/taking a long time, seem to be something to do with noteifctaions(notify-send) in the script file, may need to remove or install notify-send
 possiable fix below ....
@@ -54,10 +54,10 @@ else
 	fi
 fi
 
-4. not being copied, then selecting users
-dot.bashrc 
-dot.p10k.zsh  
-dot.xscreensaver  
-dot.zshr
+			DONE 4. not being copied, then selecting users
+			dot.bashrc 
+			dot.p10k.zsh  
+			dot.xscreensaver  
+			dot.zshr
 
 5. my sddm config not being applied
