@@ -1,3 +1,4 @@
+#!/bin/bash
  if [ "$(id -u)" -ne 0 ]; then
      echo "Please run this script with sudo:"
      echo "sudo $0"
@@ -73,7 +74,7 @@ read -p "Would you like to start installing ChrisTileOS? (y/n) " yn
 		cp dot.zshrc /etc/skel/.zshrc
 		cp dot.bashrc /etc/skel/.bashrc
 
-		chmod +x /etc/skel/.config/scripts/*
+		chmod -R +x /etc/skel/.config/scripts/
 
 		mkdir /usr/share/zsh/plugins/zsh-sudo
 		wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh -P /usr/share/zsh/plugins/zsh-sudo
@@ -161,7 +162,7 @@ if [[ ${#user_list[@]} -gt 0 ]]; then
      		cp dot.zshrc "/home/$selected_user/.zshrc"
        		git clone https://github.com/romkatv/powerlevel10k.git "/home/$selected_user/.config/powerlevel10k"
 	 	chown -R $selected_user:$selected_user "/home/$selected_user/.config/"
-  		chmod +x "/home/$selected_user/.config/scripts/*"
+  		chmod -R +x "/home/$selected_user/.config/scripts/"
                 
             else
 		echo "Copying files..."
@@ -173,7 +174,7 @@ if [[ ${#user_list[@]} -gt 0 ]]; then
      		cp dot.zshrc "/home/$selected_user/.zshrc"
        		git clone https://github.com/romkatv/powerlevel10k.git "/home/$selected_user/.config/powerlevel10k"
 	 	chown -R $selected_user:$selected_user "/home/$selected_user/.config/"
-  		chmod +x "/home/$selected_user/.config/scripts/*"
+  		chmod -R +x "/home/$selected_user/.config/scripts/"
             fi
         else
             clear
