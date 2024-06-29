@@ -69,7 +69,12 @@ read -p "Would you like to start installing ChrisTileOS? (y/n) " yn
 		cp /usr/lib/sddm/sddm.conf.d/default.conf /etc/sddm.conf.d/default.conf.user
 		sed -i s/Current=/Current=corners/ /etc/sddm.conf.d/default.conf.user
 
-		cp -r config /etc/skel/.config
+	       if [[ ! -d /etc/skel/.config ]]; then
+	       	  cp -r config /etc/skel/.config
+               elif [[  -d /etc/skel/.config ]]; then
+	          cp -r config/* /etc/skel/.config
+
+                fi
 		cp dot.xscreensaver /etc/skel/.xscreensaver
 		cp dot.zshrc /etc/skel/.zshrc
 		cp dot.bashrc /etc/skel/.bashrc
