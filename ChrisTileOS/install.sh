@@ -1,8 +1,8 @@
-# if [ "$(id -u)" -ne 0 ]; then
-#     echo "Please run this script with sudo:"
-#     echo "sudo $0"
-#     exit 1
-# fi
+ if [ "$(id -u)" -ne 0 ]; then
+     echo "Please run this script with sudo:"
+     echo "sudo $0"
+     exit 1
+ fi
 
 clear
 echo "Welcome to ChrisTileOS Install"
@@ -154,32 +154,26 @@ if [[ ${#user_list[@]} -gt 0 ]]; then
             if [[ ! -d "/home/$selected_user/.config/" ]]; then
                 echo "Creating .config directory and copying files..."
                 cp -r config "/home/$selected_user/.config"
-                chmod +x "/home/$selected_user/.config/scripts/*"
-                chown -R $selected_user:$selected_user "/home/$selected_user/.config/"
                 chsh -s "$zsh_path" $selected_user
                 cp dot.bashrc "/home/$selected_user/.bashrc"
-                chown $selected_user:$selected_user "/home/$selected_user/.bashrc"
-                git clone https://github.com/romkatv/powerlevel10k.git "/home/$selected_user/.config/powerlevel10k"
-                cp dot.p10k.zsh "/home/$selected_user/.p10k.zsh"
-                chown $selected_user:$selected_user "/home/$selected_user/.p10k.zsh"
-                cp dot.xscreensaver "/home/$selected_user/.xscreensaver"
-                chown $selected_user:$selected_user "/home/$selected_user/.xscreensaver"
-                cp dot.zshrc "/home/$selected_user/.zshrc"
-                chown $selected_user:$selected_user "/home/$selected_user/.zshrc"
+		cp dot.p10k.zsh "/home/$selected_user/.p10k.zsh"
+   		cp dot.xscreensaver "/home/$selected_user/.xscreensaver"
+     		cp dot.zshrc "/home/$selected_user/.zshrc"
+       		git clone https://github.com/romkatv/powerlevel10k.git "/home/$selected_user/.config/powerlevel10k"
+	 	chown -R $selected_user:$selected_user "/home/$selected_user/.config/"
+  		chmod +x "/home/$selected_user/.config/scripts/*"
+                
             else
+		echo "Copying files..."
                 cp -r config/* "/home/$selected_user/.config"
-                chmod -R +x "/home/$selected_user/.config/scripts/"
-                chown -R $selected_user:$selected_user "/home/$selected_user/.config/"
                 chsh -s "$zsh_path" $selected_user
                 cp dot.bashrc "/home/$selected_user/.bashrc"
-                chown $selected_user:$selected_user "/home/$selected_user/.bashrc"
-                git clone https://github.com/romkatv/powerlevel10k.git "/home/$selected_user/.config/powerlevel10k"
-                cp dot.p10k.zsh "/home/$selected_user/.p10k.zsh"
-                chown $selected_user:$selected_user "/home/$selected_user/.p10k.zsh"
-                cp dot.xscreensaver "/home/$selected_user/.xscreensaver"
-                chown $selected_user:$selected_user "/home/$selected_user/.xscreensaver"
-                cp dot.zshrc "/home/$selected_user/.zshrc"
-                chown $selected_user:$selected_user "/home/$selected_user/.zshrc"
+		cp dot.p10k.zsh "/home/$selected_user/.p10k.zsh"
+   		cp dot.xscreensaver "/home/$selected_user/.xscreensaver"
+     		cp dot.zshrc "/home/$selected_user/.zshrc"
+       		git clone https://github.com/romkatv/powerlevel10k.git "/home/$selected_user/.config/powerlevel10k"
+	 	chown -R $selected_user:$selected_user "/home/$selected_user/.config/"
+  		chmod +x "/home/$selected_user/.config/scripts/*"
             fi
         else
             clear
