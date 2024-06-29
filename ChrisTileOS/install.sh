@@ -89,8 +89,6 @@ read -p "Would you like to start installing ChrisTileOS? (y/n) " yn
 
 
 
-
-
 user_list=($(grep "/home/" /etc/passwd | awk -F : '{print $1}'))
 
 # Function to find the full path to zsh
@@ -154,28 +152,28 @@ if [[ ${#user_list[@]} -gt 0 ]]; then
                 sudo chmod +x "/home/$selected_user/.config/scripts/*"
                 sudo chown -R $selected_user:$selected_user "/home/$selected_user/.config/"
                 sudo chsh -s "$zsh_path" $selected_user
-                cp dot.bashrc "/home/$selected_user/.bashrc"
+                sudo cp dot.bashrc "/home/$selected_user/.bashrc"
                 sudo chown $selected_user:$selected_user "/home/$selected_user/.bashrc"
                 git clone https://github.com/romkatv/powerlevel10k.git "/home/$selected_user/.config/powerlevel10k"
-                cp dot.p10k.zsh "/home/$selected_user/.p10k.zsh"
+                sudo cp dot.p10k.zsh "/home/$selected_user/.p10k.zsh"
                 sudo chown $selected_user:$selected_user "/home/$selected_user/.p10k.zsh"
-                cp dot.xscreensaver "/home/$selected_user/.xscreensaver"
+                sudo cp dot.xscreensaver "/home/$selected_user/.xscreensaver"
                 sudo chown $selected_user:$selected_user "/home/$selected_user/.xscreensaver"
-                cp dot.zshrc "/home/$selected_user/.zshrc"
+                sudo cp dot.zshrc "/home/$selected_user/.zshrc"
                 sudo chown $selected_user:$selected_user "/home/$selected_user/.zshrc"
             else
                 sudo cp -r config/* "/home/$selected_user/.config"
                 sudo chmod -R +x "/home/$selected_user/.config/scripts/"
                 sudo chown -R $selected_user:$selected_user "/home/$selected_user/.config/"
                 sudo chsh -s "$zsh_path" $selected_user
-                cp dot.bashrc "/home/$selected_user/.bashrc"
+                sudo cp dot.bashrc "/home/$selected_user/.bashrc"
                 sudo chown $selected_user:$selected_user "/home/$selected_user/.bashrc"
                 git clone https://github.com/romkatv/powerlevel10k.git "/home/$selected_user/.config/powerlevel10k"
-                cp dot.p10k.zsh "/home/$selected_user/.p10k.zsh"
+                sudo cp dot.p10k.zsh "/home/$selected_user/.p10k.zsh"
                 sudo chown $selected_user:$selected_user "/home/$selected_user/.p10k.zsh"
-                cp dot.xscreensaver "/home/$selected_user/.xscreensaver"
+                sudo cp dot.xscreensaver "/home/$selected_user/.xscreensaver"
                 sudo chown $selected_user:$selected_user "/home/$selected_user/.xscreensaver"
-                cp dot.zshrc "/home/$selected_user/.zshrc"
+                sudo cp dot.zshrc "/home/$selected_user/.zshrc"
                 sudo chown $selected_user:$selected_user "/home/$selected_user/.zshrc"
             fi
         else
@@ -187,297 +185,6 @@ fi
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-################################################
-
-# user_list=($(grep "/home/" /etc/passwd | awk -F : '{print $1}'))
-
-# if [[ ${#user_list[@]} -eq 0 ]]; then
-#     read -p "No users are detected with home directories, would you like to create one? (y/n): " yn
-#     if [[ $yn == "y" ]]; then
-#         read -p "Please enter a username: " username
-#         read -p "Would you like to make this user a sudo user? (y/n): " yn_sudo
-#         if [[ ! -z $username ]]; then
-#             sudo useradd -m $username
-#             sudo passwd $username
-#             if [[ $yn_sudo == "y" ]]; then
-#                 sudo usermod -aG wheel $username
-#             fi
-#             user_list+=("$username")  # Add the new user to the list
-#         fi
-#     fi
-# fi
-
-# if [[ ${#user_list[@]} -gt 0 ]]; then
-#     while true; do
-#         echo "Existing users with home directories:"
-#         for ((i=0; i<${#user_list[@]}; i++)); do
-#             echo "$(($i + 1)). ${user_list[i]}"
-#         done
-
-#         read -p "Select a user to copy files to (or type 'add' to add another user, or 'skip' to skip to the next part): " selection
-
-#         if [[ "$selection" == "add" ]]; then
-#             read -p "Please enter a username: " username
-#             read -p "Would you like to make this user a sudo user? (y/n): " yn_sudo
-#             if [[ ! -z $username ]]; then
-#                 sudo useradd -m $username
-#                 sudo passwd $username
-#                 if [[ $yn_sudo == "y" ]]; then
-#                     sudo usermod -aG wheel $username
-#                 fi
-#                 user_list+=("$username")  # Add the new user to the list
-#                 echo "User $username added."
-#             fi
-#         elif [[ "$selection" == "skip" ]]; then
-#             break
-#         elif [[ $selection =~ ^[0-9]+$ && $selection -ge 1 && $selection -le ${#user_list[@]} ]]; then
-#             selected_user="${user_list[$(($selection - 1))]}"
-#             if [[ ! -d "/home/$selected_user/.config/" ]]; then
-#                 echo "Creating .config directory and copying files..."
-#                 sudo cp -r config "/home/$selected_user/.config"
-#                 sudo chmod +x "/home/$selected_user/.config/scripts/*"
-#                 sudo chown -R $selected_user:$selected_user "/home/$selected_user/.config/"
-#                 chsh -s /bin/zsh
-# 		#sudo sed -i "s|^\(${selected_user}:.*:\)/usr/bin/bash$|\1/usr/bin/zsh|" /etc/passwd
-#                 cp dot.bashrc "/home/$selected_user/.bashrc"
-#                 sudo chown $selected_user:$selected_user "/home/$selected_user/.bashrc"
-# 		git clone https://github.com/romkatv/powerlevel10k.git "/home/$selected_user/.config/powerlevel10k"
-#                 cp dot.p10k.zsh "/home/$selected_user/.p10k.zsh"
-#                 sudo chown $selected_user:$selected_user "/home/$selected_user/.p10k.zsh"
-#                 cp dot.xscreensaver "/home/$selected_user/.xscreensaver"
-#                 sudo chown $selected_user:$selected_user "/home/$selected_user/.xscreensaver"
-#                 cp dot.zshrc "/home/$selected_user/.zshrc"
-#                 sudo chown $selected_user:$selected_user "/home/$selected_user/.zshrc"
-#             else
-#                 echo "Copying files to existing .config directory..."
-#                 sudo cp -r config/* "/home/$selected_user/.config"
-#                 sudo chmod -R +x "/home/$selected_user/.config/scripts/"
-#                 sudo chown -R $selected_user:$selected_user "/home/$selected_user/.config/"
-#                 chsh -s /bin/zsh
-# 		#sudo sed -i "s|^\(${selected_user}:.*:\)/usr/bin/bash$|\1/usr/bin/zsh|" /etc/passwd
-#                 cp dot.bashrc "/home/$selected_user/.bashrc"
-#                 sudo chown $selected_user:$selected_user "/home/$selected_user/.bashrc"
-# 		git clone https://github.com/romkatv/powerlevel10k.git "/home/$selected_user/.config/powerlevel10k"
-#                 cp dot.p10k.zsh "/home/$selected_user/.p10k.zsh"
-#                 sudo chown $selected_user:$selected_user "/home/$selected_user/.p10k.zsh"
-#                 cp dot.xscreensaver "/home/$selected_user/.xscreensaver"
-#                 sudo chown $selected_user:$selected_user "/home/$selected_user/.xscreensaver"
-#                 cp dot.zshrc "/home/$selected_user/.zshrc"
-#                 sudo chown $selected_user:$selected_user "/home/$selected_user/.zshrc"
-#             fi
-#         else
-#             clear
-#             echo "Invalid selection. Please try again."
-#         fi
-#     done
-# fi
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            # user_list=($(grep "/home/" /etc/passwd | awk -F : '{print $1}'))
-
-			# if [[ ${#user_list[@]} -eq 0 ]]; then
-			#     read -p "No users are detected with home directories, would you like to create one? (y/n): " yn
-			#     if [[ $yn = y ]]; then
-			#         read -p "Please enter a username: " username
-			#         read -p "Would you like to make this user a sudo user? (y/n): " yn_sudo
-			#         if [[ ! -z $username ]]; then
-			#             sudo useradd -m $username
-			#             sudo passwd $username
-			#             if [[ $yn_sudo = y ]]; then
-			#                 sudo usermod -aG wheel $username
-			#             fi
-			#             user_list+=($username)  # Add the new user to the list
-			#         fi
-			#     fi
-			# fi
-
-			# if [[ ${#user_list[@]} -gt 0 ]]; then
-			#     while true; do
-			#         echo "Existing users with home directories:"
-			#         for ((i=0; i<${#user_list[@]}; i++)); do
-			#             echo "$(($i + 1)). ${user_list[i]}"
-			#         done
-
-			#         read -p "Select a user to copy files to (or type 'add' to add another user, or 'skip' to skip to the next part): " selection
-
-			#         if [[ "$selection" = "add" ]]; then
-			#             read -p "Please enter a username: " username
-			#             read -p "Would you like to make this user a sudo user? (y/n): " yn_sudo
-			#             if [[ ! -z $username ]]; then
-			#                 sudo useradd -m $username
-			#                 sudo passwd $username
-			#                 if [[ $yn_sudo = y ]]; then
-			#                     sudo usermod -aG wheel $username
-			#                 fi
-			#                 user_list+=($username)  # Add the new user to the list
-			#                 echo "User $username added."
-			#             fi
-			#         elif [[ "$selection" = "skip" ]]; then
-			#             break
-			#         elif [[ $selection =~ ^[0-9]+$ && $selection -ge 1 && $selection -le ${#user_list[@]} ]]; then
-			#             selected_user="${user_list[$(($selection - 1))]}"
-			#             if [[ ! -d "/home/$selected_user/.config/" ]]; then
-			#                 echo "NO CONFIG DIR"
-			#                 sleep 10
-			#                 sudo cp -r config "/home/$selected_user/.config"
-		   	# 				sudo chmod +x "/home/$selected_user/.config/scripts/*"
-			# 				sudo chown -r $selected_user:$selected_user "/home/$selected_user/.config/
-			#                 sudo sed -i "s|^\(${selected_user}:.*:\)/usr/bin/bash$|\1/usr/bin/zsh|" /etc/passwd
-     		# 				cp dot.bashrc .bashrc
-			# 		        sudo chown $selected_user:$selected_user
-			# 				cp dot.p10k.zsh .p10k.zsh
-			# 		        sudo chown $selected_user:$selected_user  	
-			# 		        cp dot.xscreensaver .xscreensaver
-			# 		        sudo chown $selected_user:$selected_user
-			# 		        cp dot.zshrc .zshrc
-			# 		        sudo chown $selected_user:$selected_user
-			#             else
-			#                 echo " NO CONFIG DIR"
-			#                 sudo cp -r config/* "/home/$selected_user/.config"
-		    #                 chmod +x "/home/$selected_user/.config/scripts/*"
-			#                 sudo chown -r $selected_user:$selected_user "/home/$selected_user/.config/
-			#                 sudo sed -i "s|^\(${selected_user}:.*:\)/usr/bin/bash$|\1/usr/bin/zsh|" /etc/passwd
-            #                 cp dot.bashrc .bashrc
-			# 		        sudo chown $selected_user:$selected_user
-			# 		        cp dot.p10k.zsh .p10k.zsh
-			# 		        sudo chown $selected_user:$selected_user  
-			# 		        cp dot.xscreensaver .xscreensaver
-			# 		        sudo chown $selected_user:$selected_user
-			# 		        cp dot.zshrc .zshrc
-			# 		       sudo chown $selected_user:$selected_user
-			#             fi
-			#         else
-			#             clear
-			#             echo "Invalid selection. Please try again."
-			#         fi
-			#     done
-			# fi
-
-
-
-
-
-
-
-
-		# user_list=($(grep "/home/" /etc/passwd | awk -F : '{print $1}'))
-
-		# if [[ ${#user_list[@]} -eq 0 ]]; then
-		#     read -p "No users are detected with home directories, would you like to create one? (y/n): " yn
-		#     if [[ $yn = y ]]; then
-		#         read -p "Please enter a username: " username
-		#         read -p "Would you like to make this user a sudo user? (y/n): " yn_sudo
-		#         if [[ ! -z $username ]]; then
-		#             sudo useradd -m $username
-		#             sudo passwd $username
-		#             if [[ $yn_sudo = y ]]; then
-		#                 sudo usermod -aG wheel $username
-		#             fi
-		#             user_list+=($username)  # Add the new user to the list
-		#         fi
-		#     fi
-		# fi
-
-		# if [[ ${#user_list[@]} -gt 0 ]]; then
-		#     while true; do
-		#         echo "Existing users with home directories:"
-		#         for ((i=0; i<${#user_list[@]}; i++)); do
-		#             echo "$(($i + 1)). ${user_list[i]}"
-		#         done
-
-		#         read -p "Select a user to copy files to (or type 'add' to add another user, or 'skip' to skip to the next part): " selection
-
-		#         if [[ "$selection" = "add" ]]; then
-		#             read -p "Please enter a username: " username
-		#             read -p "Would you like to make this user a sudo user? (y/n): " yn_sudo
-		#             if [[ ! -z $username ]]; then
-		#                 sudo useradd -m $username
-		#                 sudo passwd $username
-		#                 if [[ $yn_sudo = y ]]; then
-		#                     sudo usermod -aG wheel $username
-		#                 fi
-		#                 user_list+=($username)  # Add the new user to the list
-		#                 echo "User $username added."
-		#             fi
-		#         elif [[ "$selection" = "skip" ]]; then
-		#             break
-		#         elif [[ $selection =~ ^[0-9]+$ && $selection -ge 1 && $selection -le ${#user_list[@]} ]]; then
-		#             selected_user="${user_list[$(($selection - 1))]}"
-		#             sudo cp -r config "/home/$selected_user/.config"
-		#             sudo sed -i "s|^\(${selected_user}:.*:\)/usr/bin/bash$|\1/usr/bin/zsh|" /etc/passwd
-		#         else
-		#             clear
-		#             echo "Invalid selection. Please try again."
-		#         fi
-		#     done
-		# fi
     
 
 
