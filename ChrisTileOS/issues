@@ -62,6 +62,6 @@ fi
 
 5. my sddm config not being applied
 
-6. powerlevel10k not working, 
+		6. powerlevel10k not working, 
 
-7 sed command dont seem to be working correctly for /etc/passed to change bash to zsh
+		7 sed command dont seem to be working correctly for /etc/passed to change bash to zsh
