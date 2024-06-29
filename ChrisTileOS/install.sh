@@ -136,7 +136,8 @@ if [[ ${#user_list[@]} -gt 0 ]]; then
                 sudo cp -r config "/home/$selected_user/.config"
                 sudo chmod +x "/home/$selected_user/.config/scripts/*"
                 sudo chown -R $selected_user:$selected_user "/home/$selected_user/.config/"
-                sudo sed -i "s|^\(${selected_user}:.*:\)/usr/bin/bash$|\1/usr/bin/zsh|" /etc/passwd
+                chsh -s /bin/zsh
+		#sudo sed -i "s|^\(${selected_user}:.*:\)/usr/bin/bash$|\1/usr/bin/zsh|" /etc/passwd
                 cp dot.bashrc "/home/$selected_user/.bashrc"
                 sudo chown $selected_user:$selected_user "/home/$selected_user/.bashrc"
 		git clone https://github.com/romkatv/powerlevel10k.git "/home/$selected_user/.config/powerlevel10k"
@@ -151,7 +152,8 @@ if [[ ${#user_list[@]} -gt 0 ]]; then
                 sudo cp -r config/* "/home/$selected_user/.config"
                 sudo chmod -R +x "/home/$selected_user/.config/scripts/"
                 sudo chown -R $selected_user:$selected_user "/home/$selected_user/.config/"
-                sudo sed -i "s|^\(${selected_user}:.*:\)/usr/bin/bash$|\1/usr/bin/zsh|" /etc/passwd
+                chsh -s /bin/zsh
+		#sudo sed -i "s|^\(${selected_user}:.*:\)/usr/bin/bash$|\1/usr/bin/zsh|" /etc/passwd
                 cp dot.bashrc "/home/$selected_user/.bashrc"
                 sudo chown $selected_user:$selected_user "/home/$selected_user/.bashrc"
 		git clone https://github.com/romkatv/powerlevel10k.git "/home/$selected_user/.config/powerlevel10k"
