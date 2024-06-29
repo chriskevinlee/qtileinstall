@@ -1,3 +1,9 @@
+# if [ "$(id -u)" -ne 0 ]; then
+#     echo "Please run this script with sudo:"
+#     echo "sudo $0"
+#     exit 1
+# fi
+
 clear
 echo "Welcome to ChrisTileOS Install"
 read -p "Would you like to start installing ChrisTileOS? (y/n) " yn
