@@ -65,9 +65,10 @@ read -p "Would you like to start installing ChrisTileOS? (y/n) " yn
 		systemctl enable sddm
 
 		cp -r corners /usr/share/sddm/themes/
-		mkdir /etc/sddm.conf.d/
-		cp /usr/lib/sddm/sddm.conf.d/default.conf /etc/sddm.conf.d/default.conf.user
-		sed -i s/Current=/Current=corners/ /etc/sddm.conf.d/default.conf.user
+		# mkdir /etc/sddm.conf.d/
+		# cp /usr/lib/sddm/sddm.conf.d/default.conf /etc/sddm.conf.d/default.conf.user
+  		cp /usr/lib/sddm/sddm.conf.d/default.conf /etc/sddm.conf
+		sed -i s/Current=/Current=corners/ /etc/sddm.conf
 
 	       if [[ ! -d /etc/skel/.config ]]; then
 	       	  cp -r config /etc/skel/.config
